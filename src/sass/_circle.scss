@@ -1,0 +1,81 @@
+@use 'sass:math';
+
+#circle {
+  display: inline-block;
+  position: relative;
+  perspective: 500px;
+  perspective-origin: 50%;
+  transform-style: preserve-3d;
+  border: red solid thin;
+  //border-radius: 50% 50% 30% 30%/ 40% 40% 70% 70%;
+  border-radius: 50%;
+  height: 100vmin;
+  width: 100vmin;
+}
+.threeHours {
+  border: yellow solid thin;
+  display: inline-block;
+  position: absolute;
+  height: 20vmin;
+  width: calc(2 * 50vmin * math.$pi / 8);
+  &.nth1 {
+    transform: rotate(202.5deg);
+    bottom: 0;
+    left: 20%;
+  }
+  &.nth2 {
+    transform: rotate(247.5deg);
+    bottom: 20%;
+    left: 0;
+  }
+  &.nth3 {
+    transform: rotate(-67.5deg);
+    top: 20%;
+    left: -1%;
+  }
+  &.nth4 {
+    transform: rotate(-22.5deg);
+    top: 5%;
+    left: 15%;
+  }
+  &.nth5 {
+    transform: rotate(22.5deg);
+    top: 5%;
+    right: 15%;
+  }
+  &.nth6 {
+    transform: rotate(67.5deg);
+    top: 27%;
+    right: -5%;
+  }
+  &.nth7 {
+    transform: rotate(112.5deg);
+    top: 55%;
+    right: -5%;
+  }
+  &.nth8 {
+    transform: rotate(157.5deg);
+    bottom: 0;
+    right: 20%;
+  }
+}
+.hour {
+  border-right: cyan solid thin;
+  border-bottom: cyan solid thin;
+  display: inline-block;
+  width: calc(100% / 3);
+  height: calc(200% / 3);
+  &.nth3 {
+    border-right: none;
+  }
+}
+.minute {
+  border-right: solid thin orangered;
+  border-bottom: solid thin orangered;
+  display: inline-block;
+  width: calc(100% / 6);
+  height: 50%;
+  &.nth6 {
+    border-right: none;
+  }
+}

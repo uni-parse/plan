@@ -1,0 +1,16 @@
+@mixin space($p: 0, $m: $p) {
+  padding: $p;
+  margin: $m;
+}
+@mixin size($w, $h: $w) {
+  width: $w;
+  height: $h;
+}
+@mixin maxSize($w, $h: $w) {
+  max-width: $w;
+  max-height: $h;
+}
+@mixin minSize($w, $h: $w) {
+  min-width: $w;
+  min-height: $h;
+}

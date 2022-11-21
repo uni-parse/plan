@@ -1,0 +1,12 @@
+pnpm create vite  //choice <projectName> than vanila|vanila-ts
+pnpm cd <ptojectName> && pnpm i && pnpm add -D sass postcss postcss-preset-env vite-imagetools
+
+vite-plugin-spritesmith vite-plugin-image-presets
+@vitejs/plugin-legacy
+
+
+"browserslist":["last 2 versions and >= 1% and not IE <= 11"]
+
+
+r=50vmin
+p=2rπ = 314.159
