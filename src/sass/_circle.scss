@@ -1,72 +1,211 @@
 @use 'sass:math';
+@use 'utilities' as *;
+@use 'sass:color';
+
+$size: 100vmin;
 
 #circle {
   display: inline-block;
+  @include space(0);
   position: relative;
-  perspective: 500px;
   perspective-origin: 50%;
   transform-style: preserve-3d;
-  border: red solid thin;
+  border: solid thin;
   //border-radius: 50% 50% 30% 30%/ 40% 40% 70% 70%;
   border-radius: 50%;
-  height: 100vmin;
-  width: 100vmin;
+  //overflow: clip;
+  @include size($size);
+  perspective: 0.8 * $size;
 }
 .threeHours {
-  border: yellow solid thin;
-  display: inline-block;
+  //border: yellow solid thin;
+  display: none;
   position: absolute;
-  height: 20vmin;
-  width: calc(2 * 50vmin * math.$pi / 8);
+  //perspective-origin:50%;
+  //perspective: none;
+  transform-style: preserve-3d;
+  transform-origin: center 0 0;
+  height: 20%;
+  width: calc(2 * 50% * math.$pi / 8);
+  $horizontal1: 12.25%; //done
+  $vertical1: -12.5%;
+  $vertical11: 7.5%;
+  $horizontal2: -11.8%;
+  $vertical2: 24.2%;
+  $vertical22: 14.2%;
+  $rotateX: rotateX(-90deg);
   &.nth1 {
-    transform: rotate(202.5deg);
-    bottom: 0;
-    left: 20%;
+    transform: rotateZ(202.5deg) $rotateX;
+    bottom: $vertical1;
+    left: $horizontal1;
   }
   &.nth2 {
-    transform: rotate(247.5deg);
-    bottom: 20%;
-    left: 0;
+    transform: rotateZ(247.5deg) $rotateX;
+    bottom: $vertical22;
+    left: $horizontal2;
   }
   &.nth3 {
-    transform: rotate(-67.5deg);
-    top: 20%;
-    left: -1%;
+    transform: rotateZ(-67.5deg) $rotateX;
+    top: $vertical2;
+    left: $horizontal2;
   }
   &.nth4 {
-    transform: rotate(-22.5deg);
-    top: 5%;
-    left: 15%;
+    transform: rotateZ(-22.5deg) $rotateX;
+    top: $vertical11;
+    left: $horizontal1;
   }
   &.nth5 {
-    transform: rotate(22.5deg);
-    top: 5%;
-    right: 15%;
+    transform: rotateZ(22.5deg) $rotateX;
+    top: $vertical11;
+    right: $horizontal1;
   }
   &.nth6 {
-    transform: rotate(67.5deg);
-    top: 27%;
-    right: -5%;
+    transform: rotateZ(67.5deg) $rotateX;
+    top: $vertical2;
+    right: $horizontal2;
   }
   &.nth7 {
-    transform: rotate(112.5deg);
-    top: 55%;
-    right: -5%;
+    transform: rotateZ(112.5deg) $rotateX;
+    bottom: $vertical22;
+    right: $horizontal2;
   }
   &.nth8 {
-    transform: rotate(157.5deg);
-    bottom: 0;
-    right: 20%;
+    transform: rotateZ(157.5deg) $rotateX;
+    bottom: $vertical1;
+    right: $horizontal1;
   }
 }
 .hour {
-  border-right: cyan solid thin;
+  border: cyan solid thin;
+  border-left: none;
+  background: color.adjust(yellowgreen, $alpha: -0.5);
   border-bottom: cyan solid thin;
   display: inline-block;
-  width: calc(100% / 3);
-  height: calc(200% / 3);
+  transform-origin: 50% 0;
+  position: absolute;
+  $hourW: calc(2 * 51% * math.$pi / 24);
+  $hourH: 10%;
+  @include size($hourW, $hourH);
+  $rotateX: rotateX(-90deg);
+  &.nth1 {
+    bottom: -$hourH;
+    left: 50% - 0.988 * $hourW;
+    transform: rotateZ(187.5deg) $rotateX;
+  }
+  &.nth2 {
+    bottom: -0.658 * $hourH;
+    left: 50% - 1.934 * $hourW;
+    transform: rotateZ(202.5deg) $rotateX;
+  }
   &.nth3 {
-    border-right: none;
+    bottom: -0.002 * $hourH;
+    left: 50% - 2.787 * $hourW;
+    transform: rotateZ(217.5deg) $rotateX;
+  }
+  &.nth4 {
+    bottom: 0.93 * $hourH;
+    left: 50% - 3.48 * $hourW;
+    transform: rotateZ(232.5deg) $rotateX;
+  }
+  &.nth5 {
+    bottom: 50% - 2.199 * $hourW;
+    left: -0.225 * $hourW;
+    transform: rotateZ(247.5deg) $rotateX;
+  }
+  &.nth6 {
+    bottom: 50% - 1.25 * $hourW;
+    left: -0.48 * $hourW;
+    transform: rotateZ(262.5deg) $rotateX;
+  }
+  &.nth7 {
+    top: 50% - 0.48 * $hourW;
+    left: -0.48 * $hourW;
+    transform: rotateZ(277.5deg) $rotateX;
+  }
+  &.nth8 {
+    top: 50% - 1.427 * $hourW;
+    left: -0.23 * $hourW;
+    transform: rotateZ(292.5deg) $rotateX;
+  }
+  &.nth9 {
+    top: 1.96 * $hourH;
+    left: 50% - 3.485 * $hourW;
+    transform: rotateZ(307.5deg) $rotateX;
+  }
+  &.nth10 {
+    top: 1.036 * $hourH;
+    left: 50% - 2.794 * $hourW;
+    transform: rotateZ(322.5deg) $rotateX;
+  }
+  &.nth11 {
+    top: 0.38 * $hourH;
+    left: 50% - 1.945 * $hourW;
+    transform: rotateZ(337.5deg) $rotateX;
+  }
+  &.nth12 {
+    top: 0.04*$hourH;
+    left: 50% - 0.993* $hourW;
+    transform: rotateZ(352.5deg) $rotateX;
+  }
+  &.nth13 {
+    top: 0.04*$hourH;
+    right: 50% - 0.993* $hourW;
+    transform: rotateZ(7.5deg) $rotateX;
+  }
+  &.nth14 {
+    top: 0.38 * $hourH;
+    right: 50% - 1.945 * $hourW;
+    transform: rotateZ(22.5deg) $rotateX;
+  }
+  &.nth15 {
+    top: 1.036 * $hourH;
+    right: 50% - 2.794 * $hourW;
+    transform: rotateZ(37.5deg) $rotateX;
+  }
+  &.nth16 {
+    top: 1.96 * $hourH;
+    right: 50% - 3.485 * $hourW;
+    transform: rotateZ(52.5deg) $rotateX;
+  }
+  &.nth17 {
+    top: 50% - 1.427 * $hourW;
+    right: -0.23 * $hourW;
+    transform: rotateZ(67.5deg) $rotateX;
+  }
+  &.nth18 {
+    top: 50% - 0.48 * $hourW;
+    right: -0.48 * $hourW;
+    transform: rotateZ(82.5deg) $rotateX;
+  }
+  &.nth19 {
+    bottom: 50% - 1.25 * $hourW;
+    right: -0.48 * $hourW;
+    transform: rotateZ(97.5deg) $rotateX;
+  }
+  &.nth20 {
+    bottom: 50% - 2.199 * $hourW;
+    right: -0.225 * $hourW;
+    transform: rotateZ(112.5deg) $rotateX;
+  }
+  &.nth21 {
+    bottom: 0.93 * $hourH;
+    right: 50% - 3.48 * $hourW;
+    transform: rotateZ(127.5deg) $rotateX;
+  }
+  &.nth22 {
+    bottom: -0.002 * $hourH;
+    right: 50% - 2.787 * $hourW;
+    transform: rotateZ(142.5deg) $rotateX;
+  }
+  &.nth23 {
+    bottom: -0.658 * $hourH;
+    right: 50% - 1.934 * $hourW;
+    transform: rotateZ(157.5deg) $rotateX;
+  }
+  &.nth24 {
+    bottom: -$hourH;
+    right: 50% - 0.988 * $hourW;
+    transform: rotateZ(172.5deg) $rotateX;
   }
 }
 .minute {
