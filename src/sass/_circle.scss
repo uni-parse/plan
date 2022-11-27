@@ -79,132 +79,137 @@ $size: 100vmin;
   border: cyan solid thin;
   border-left: none;
   background: color.adjust(yellowgreen, $alpha: -0.5);
-  border-bottom: cyan solid thin;
   display: inline-block;
   transform-origin: 50% 0;
   position: absolute;
-  $hourW: calc(2 * 51% * math.$pi / 24);
-  $hourH: 10%;
+  //sideLength= 2r * sin(π/numberGon)        circle & poligon
+  $hourW: 2 * 50% * math.sin(math.$pi / 24);
+  $hourW: $hourW + 2 / 100 * $hourW;
+  $hourH: 18%; //25%
   @include size($hourW, $hourH);
   $rotateX: rotateX(-90deg);
   &.nth1 {
-    bottom: -$hourH;
-    left: 50% - 0.988 * $hourW;
+    bottom: -0.98 * $hourH;
+    right: 49.9%;
     transform: rotateZ(187.5deg) $rotateX;
   }
   &.nth2 {
-    bottom: -0.658 * $hourH;
-    left: 50% - 1.934 * $hourW;
+    bottom: -0.79 * $hourH;
+    left: 50% - 1.94 * $hourW;
     transform: rotateZ(202.5deg) $rotateX;
   }
   &.nth3 {
-    bottom: -0.002 * $hourH;
-    left: 50% - 2.787 * $hourW;
+    bottom: -0.43 * $hourH;
+    left: 50% - 2.79 * $hourW;
     transform: rotateZ(217.5deg) $rotateX;
   }
   &.nth4 {
-    bottom: 0.93 * $hourH;
-    left: 50% - 3.48 * $hourW;
+    bottom: 0.085 * $hourH;
+    left: 50% - 3.485 * $hourW;
     transform: rotateZ(232.5deg) $rotateX;
   }
   &.nth5 {
-    bottom: 50% - 2.199 * $hourW;
-    left: -0.225 * $hourW;
+    bottom: 12.8%;
+    left: -0.215 * $hourW;
     transform: rotateZ(247.5deg) $rotateX;
   }
+
   &.nth6 {
-    bottom: 50% - 1.25 * $hourW;
-    left: -0.48 * $hourW;
+    top: 49.9% + 0.5 * $hourW;
+    left: -0.47 * $hourW;
     transform: rotateZ(262.5deg) $rotateX;
   }
   &.nth7 {
-    top: 50% - 0.48 * $hourW;
-    left: -0.48 * $hourW;
+    bottom: 38.5%;
+    left: -0.47 * $hourW;
     transform: rotateZ(277.5deg) $rotateX;
   }
+
   &.nth8 {
-    top: 50% - 1.427 * $hourW;
-    left: -0.23 * $hourW;
+    top: 30.9%;
+    left: -0.216 * $hourW;
     transform: rotateZ(292.5deg) $rotateX;
   }
   &.nth9 {
-    top: 1.96 * $hourH;
+    top: 1.09 * $hourH;
     left: 50% - 3.485 * $hourW;
     transform: rotateZ(307.5deg) $rotateX;
   }
   &.nth10 {
-    top: 1.036 * $hourH;
-    left: 50% - 2.794 * $hourW;
+    top: 0.573 * $hourH;
+    left: 50% - 2.795 * $hourW;
     transform: rotateZ(322.5deg) $rotateX;
   }
   &.nth11 {
-    top: 0.38 * $hourH;
-    left: 50% - 1.945 * $hourW;
+    top: 0.21 * $hourH;
+    left: 50% - 1.942 * $hourW;
     transform: rotateZ(337.5deg) $rotateX;
   }
+
   &.nth12 {
-    top: 0.04*$hourH;
-    left: 50% - 0.993* $hourW;
+    top: .02*$hourH;
+    right: 49.9%;
     transform: rotateZ(352.5deg) $rotateX;
   }
   &.nth13 {
-    top: 0.04*$hourH;
-    right: 50% - 0.993* $hourW;
+    top: .02*$hourH;
+    left: 49.9%;
     transform: rotateZ(7.5deg) $rotateX;
   }
+
   &.nth14 {
-    top: 0.38 * $hourH;
-    right: 50% - 1.945 * $hourW;
+    top: 0.21 * $hourH;
+    right: 50% - 1.942 * $hourW;
     transform: rotateZ(22.5deg) $rotateX;
   }
   &.nth15 {
-    top: 1.036 * $hourH;
-    right: 50% - 2.794 * $hourW;
+    top: 0.573 * $hourH;
+    right: 50% - 2.795 * $hourW;
     transform: rotateZ(37.5deg) $rotateX;
   }
   &.nth16 {
-    top: 1.96 * $hourH;
+    top: 1.09 * $hourH;
     right: 50% - 3.485 * $hourW;
     transform: rotateZ(52.5deg) $rotateX;
   }
   &.nth17 {
-    top: 50% - 1.427 * $hourW;
-    right: -0.23 * $hourW;
+    top: 30.9%;
+    right: -0.216 * $hourW;
     transform: rotateZ(67.5deg) $rotateX;
   }
   &.nth18 {
-    top: 50% - 0.48 * $hourW;
-    right: -0.48 * $hourW;
+    bottom: 38.5%;
+    right: -0.47 * $hourW;
     transform: rotateZ(82.5deg) $rotateX;
   }
   &.nth19 {
-    bottom: 50% - 1.25 * $hourW;
-    right: -0.48 * $hourW;
+    top: 49.9% + 0.5 * $hourW;
+    right: -0.47 * $hourW;
     transform: rotateZ(97.5deg) $rotateX;
   }
   &.nth20 {
-    bottom: 50% - 2.199 * $hourW;
-    right: -0.225 * $hourW;
+    bottom: 12.8%;
+    right: -0.215 * $hourW;
     transform: rotateZ(112.5deg) $rotateX;
   }
   &.nth21 {
-    bottom: 0.93 * $hourH;
-    right: 50% - 3.48 * $hourW;
+    bottom: 0.085 * $hourH;
+    right: 50% - 3.485 * $hourW;
     transform: rotateZ(127.5deg) $rotateX;
   }
   &.nth22 {
-    bottom: -0.002 * $hourH;
-    right: 50% - 2.787 * $hourW;
+    bottom: -0.43 * $hourH;
+    right: 50% - 2.79 * $hourW;
     transform: rotateZ(142.5deg) $rotateX;
   }
   &.nth23 {
-    bottom: -0.658 * $hourH;
-    right: 50% - 1.934 * $hourW;
+    bottom: -0.79 * $hourH;
+    right: 50% - 1.94 * $hourW;
     transform: rotateZ(157.5deg) $rotateX;
   }
   &.nth24 {
-    bottom: -$hourH;
-    right: 50% - 0.988 * $hourW;
+    bottom: -0.98 * $hourH;
+    left: 49.9%;
     transform: rotateZ(172.5deg) $rotateX;
   }
 }
