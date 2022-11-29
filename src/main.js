@@ -23,7 +23,7 @@ for (let i = 1; i <= 24; i++) {
   localSingleHour.setAttribute('class', 'singleHour')
   h.appendChild(localSingleHour)
   h.setAttribute('class', `hour hour${i}`)
-  h.setAttribute('data-hour', i == 24 ? '00' : i)
+  h.setAttribute('data-hour', i == 24 ? '0' : i)
   hoursCircle.appendChild(h)
 }
 for (let i = 1; i <= 8; i++) {
