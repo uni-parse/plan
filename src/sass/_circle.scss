@@ -2,224 +2,367 @@
 @use 'utilities' as *;
 @use 'sass:color';
 
-$size: 100vmin;
-
+$size: 90vmin;
+//$border-radius:thin;
+$border-size: 0.3/100 * $size;
+$backgroundColor: #111;
 #circle {
+  background: $backgroundColor;
   display: inline-block;
   @include space(0);
   position: relative;
-  perspective-origin: 50%;
-  transform-style: preserve-3d;
-  border: solid thin;
+  border: solid $border-size;
   //border-radius: 50% 50% 30% 30%/ 40% 40% 70% 70%;
   border-radius: 50%;
-  //overflow: clip;
   @include size($size);
+}
+#centerCircle {
+  border: solid yellow $border-size;
+  border-radius: 50%;
+  display: inline-block;
+  @include size(68%);
+  position: absolute;
+  $offset: 16%;
+  top: $offset;
+  left: $offset;
+  background: $backgroundColor;
+}
+#threeHoursCircle {
+  @include size(75.7%);
+  display: inline-block;
+  position: absolute;
+  $offset: 12.15%;
+  top: $offset;
+  left: $offset;
   perspective: 0.8 * $size;
+  perspective-origin: 50%;
+  transform-style: preserve-3d;
+  //background: $backgroundColor;
+  border: cyan solid $border-size;
+  border-radius: 50%;
+  overflow: clip;
 }
 .threeHours {
-  //border: yellow solid thin;
-  display: none;
+  border-left: yellow solid $border-size;
+  border-right: none;
+  //background: color.adjust(yellowgreen, $alpha: -0.7);
+  display: inline-block;
   position: absolute;
-  //perspective-origin:50%;
-  //perspective: none;
   transform-style: preserve-3d;
-  transform-origin: center 0 0;
-  height: 20%;
-  width: calc(2 * 50% * math.$pi / 8);
-  $horizontal1: 12.25%; //done
-  $vertical1: -12.5%;
-  $vertical11: 7.5%;
-  $horizontal2: -11.8%;
-  $vertical2: 24.2%;
-  $vertical22: 14.2%;
+  transform-origin: 50% 0;
+
+  //sideLength= 2r * sin(π/numberGon)        circle & poligon
+  $width: 2 * 50% * math.sin(math.$pi / 8);
+  $width: $width + 9/100 * $width;
+  $height: 30%;
+  @include size($width, $height);
   $rotateX: rotateX(-90deg);
-  &.nth1 {
+  &.threeHours1 {
     transform: rotateZ(202.5deg) $rotateX;
-    bottom: $vertical1;
-    left: $horizontal1;
+    bottom: -0.873 * $height;
+    right: 48.1%;
   }
-  &.nth2 {
+  &.threeHours2 {
     transform: rotateZ(247.5deg) $rotateX;
-    bottom: $vertical22;
-    left: $horizontal2;
+    bottom: 0.5%;
+    left: -17.4%;
   }
-  &.nth3 {
+  &.threeHours3 {
     transform: rotateZ(-67.5deg) $rotateX;
-    top: $vertical2;
-    left: $horizontal2;
+    top: 31.045%;
+    left: -17.5%;
   }
-  &.nth4 {
+  &.threeHours4 {
     transform: rotateZ(-22.5deg) $rotateX;
-    top: $vertical11;
-    left: $horizontal1;
+    top: 3.7%;
+    left: 9.6%;
   }
-  &.nth5 {
+  &.threeHours5 {
     transform: rotateZ(22.5deg) $rotateX;
-    top: $vertical11;
-    right: $horizontal1;
+    top: 3.5%;
+    right: 10%;
   }
-  &.nth6 {
+  &.threeHours6 {
     transform: rotateZ(67.5deg) $rotateX;
-    top: $vertical2;
-    right: $horizontal2;
+    top: 30.61%;
+    right: -17.2%;
   }
-  &.nth7 {
+  &.threeHours7 {
     transform: rotateZ(112.5deg) $rotateX;
-    bottom: $vertical22;
-    right: $horizontal2;
+    bottom: 0.99%;
+    right: -17.4%;
   }
-  &.nth8 {
+  &.threeHours8 {
     transform: rotateZ(157.5deg) $rotateX;
-    bottom: $vertical1;
-    right: $horizontal1;
+    bottom: -0.876 * $height;
+    left: 48.6%;
   }
 }
+#hoursCircle {
+  @include size(90%);
+  display: inline-block;
+  position: absolute;
+  $offset: 5%;
+  top: $offset;
+  left: $offset;
+  perspective: 0.8 * $size;
+  perspective-origin: 50%;
+  transform-style: preserve-3d;
+  //background-color: green;
+  border: magenta solid$border-size;
+  border-radius: 50%;
+  //overflow: clip;
+}
 .hour {
-  border: cyan solid thin;
+  border-right: cyan solid $border-size;
   border-left: none;
-  background: color.adjust(yellowgreen, $alpha: -0.5);
+  $border-radius: 100% 10%;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+  //background: color.adjust(yellowgreen, $alpha: -0.5);
   display: inline-block;
   transform-origin: 50% 0;
   position: absolute;
+  //overflow: clip;
   //sideLength= 2r * sin(π/numberGon)        circle & poligon
   $hourW: 2 * 50% * math.sin(math.$pi / 24);
   $hourW: $hourW + 2 / 100 * $hourW;
   $hourH: 18%; //25%
   @include size($hourW, $hourH);
   $rotateX: rotateX(-90deg);
-  &.nth1 {
+  &:nth-child(3n) {
+    border-right: yellow solid $border-size;
+  }
+  $font-size: 6/100 * $size;
+  &::after {
+    content: attr(data-hour);
+    font-size: $font-size;
+    position: absolute;
+    transform-origin: 50%;
+    bottom: 102%;
+    right: -0.5 * $font-size;
+    display: inline-block;
+    //border: solid cyan $border-size;
+  }
+  &:nth-child(1n):nth-child(-1n + 9):after {
+    right: -0.25 * $font-size;
+  }
+  $label-transforms: rotateZ(13deg) rotateX(0deg) skewX(13deg);
+  &.hour1 {
     bottom: -0.98 * $hourH;
     right: 49.9%;
     transform: rotateZ(187.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(170deg) $label-transforms;
+    }
   }
-  &.nth2 {
+  &.hour2 {
     bottom: -0.79 * $hourH;
     left: 50% - 1.94 * $hourW;
     transform: rotateZ(202.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(160deg) $label-transforms;
+    }
   }
-  &.nth3 {
+  &.hour3 {
     bottom: -0.43 * $hourH;
     left: 50% - 2.79 * $hourW;
     transform: rotateZ(217.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(150deg) $label-transforms;
+    }
   }
-  &.nth4 {
+  &.hour4 {
     bottom: 0.085 * $hourH;
     left: 50% - 3.485 * $hourW;
     transform: rotateZ(232.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(130deg) $label-transforms;
+    }
   }
-  &.nth5 {
+  &.hour5 {
     bottom: 12.8%;
     left: -0.215 * $hourW;
     transform: rotateZ(247.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(110deg) $label-transforms;
+    }
   }
 
-  &.nth6 {
+  &.hour6 {
     top: 49.9% + 0.5 * $hourW;
     left: -0.47 * $hourW;
     transform: rotateZ(262.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(90deg) $label-transforms;
+    }
   }
-  &.nth7 {
+  &.hour7 {
     bottom: 38.5%;
     left: -0.47 * $hourW;
     transform: rotateZ(277.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(80deg) $label-transforms;
+    }
   }
 
-  &.nth8 {
+  &.hour8 {
     top: 30.9%;
     left: -0.216 * $hourW;
     transform: rotateZ(292.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(50deg) $label-transforms;
+    }
   }
-  &.nth9 {
+  &.hour9 {
     top: 1.09 * $hourH;
     left: 50% - 3.485 * $hourW;
     transform: rotateZ(307.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(30deg) $label-transforms;
+    }
   }
-  &.nth10 {
+  &.hour10 {
     top: 0.573 * $hourH;
     left: 50% - 2.795 * $hourW;
     transform: rotateZ(322.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(25deg) $label-transforms;
+    }
   }
-  &.nth11 {
+  &.hour11 {
     top: 0.21 * $hourH;
     left: 50% - 1.942 * $hourW;
     transform: rotateZ(337.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(7deg) $label-transforms;
+    }
   }
 
-  &.nth12 {
-    top: .02*$hourH;
+  &.hour12 {
+    top: 0.02 * $hourH;
     right: 49.9%;
     transform: rotateZ(352.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(0deg) $label-transforms;
+    }
   }
-  &.nth13 {
-    top: .02*$hourH;
+  &.hour13 {
+    top: 0.02 * $hourH;
     left: 49.9%;
     transform: rotateZ(7.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(-7deg) $label-transforms;
+    }
   }
 
-  &.nth14 {
+  &.hour14 {
     top: 0.21 * $hourH;
     right: 50% - 1.942 * $hourW;
     transform: rotateZ(22.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(-30deg) $label-transforms;
+    }
   }
-  &.nth15 {
+  &.hour15 {
     top: 0.573 * $hourH;
     right: 50% - 2.795 * $hourW;
     transform: rotateZ(37.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(-50deg) $label-transforms;
+    }
   }
-  &.nth16 {
+  &.hour16 {
     top: 1.09 * $hourH;
     right: 50% - 3.485 * $hourW;
     transform: rotateZ(52.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(-65deg) $label-transforms;
+    }
   }
-  &.nth17 {
+  &.hour17 {
     top: 30.9%;
     right: -0.216 * $hourW;
     transform: rotateZ(67.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(-80deg) $label-transforms;
+    }
   }
-  &.nth18 {
+  &.hour18 {
     bottom: 38.5%;
     right: -0.47 * $hourW;
     transform: rotateZ(82.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(-90deg) $label-transforms;
+    }
   }
-  &.nth19 {
+  &.hour19 {
     top: 49.9% + 0.5 * $hourW;
     right: -0.47 * $hourW;
     transform: rotateZ(97.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(-100deg) $label-transforms;
+    }
   }
-  &.nth20 {
+  &.hour20 {
     bottom: 12.8%;
     right: -0.215 * $hourW;
     transform: rotateZ(112.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(-120deg) $label-transforms;
+    }
   }
-  &.nth21 {
+  &.hour21 {
     bottom: 0.085 * $hourH;
     right: 50% - 3.485 * $hourW;
     transform: rotateZ(127.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(-140deg) $label-transforms;
+    }
   }
-  &.nth22 {
+  &.hour22 {
     bottom: -0.43 * $hourH;
     right: 50% - 2.79 * $hourW;
     transform: rotateZ(142.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(-160deg) $label-transforms;
+    }
   }
-  &.nth23 {
+  &.hour23 {
     bottom: -0.79 * $hourH;
     right: 50% - 1.94 * $hourW;
     transform: rotateZ(157.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(-170deg) $label-transforms;
+    }
   }
-  &.nth24 {
+  &.hour24 {
     bottom: -0.98 * $hourH;
     left: 49.9%;
     transform: rotateZ(172.5deg) $rotateX;
+    &::after {
+      transform: rotateZ(0deg) $label-transforms;
+    }
   }
 }
+.singleHour {
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  @include size(98.75%, 57%);
+  background: $backgroundColor;
+  border-top: orangered solid (2 * $border-size);
+  $border-radius: 50% 10%;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+}
 .minute {
-  border-right: solid thin orangered;
-  border-bottom: solid thin orangered;
+  border-right: solid orangered $border-size;
   display: inline-block;
   width: calc(100% / 6);
   height: 50%;
-  &.nth6 {
+  &.minute6 {
     border-right: none;
   }
 }
