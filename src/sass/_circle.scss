@@ -174,7 +174,7 @@ $backgroundColor: #111;
     left: 50% - 2.79 * $hourW;
     transform: rotateZ(217.5deg) $rotateX;
     &::after {
-      transform: rotateZ(180deg) $label-transforms;
+      transform: rotateZ(140deg) $label-transforms;
     }
   }
   &.hour4 {
@@ -224,7 +224,7 @@ $backgroundColor: #111;
     left: 50% - 3.485 * $hourW;
     transform: rotateZ(307.5deg) $rotateX;
     &::after {
-      transform: rotateZ(0deg) $label-transforms;
+      transform: rotateZ(40deg) $label-transforms;
     }
   }
   &.hour10 {
@@ -274,7 +274,7 @@ $backgroundColor: #111;
     right: 50% - 2.795 * $hourW;
     transform: rotateZ(37.5deg) $rotateX;
     &::after {
-      transform: rotateZ(0deg) $label-transforms;
+      transform: rotateZ(-50deg) $label-transforms;
     }
   }
   &.hour16 {
@@ -322,7 +322,7 @@ $backgroundColor: #111;
     right: 50% - 3.485 * $hourW;
     transform: rotateZ(127.5deg) $rotateX;
     &::after {
-      transform: rotateZ(180deg) $label-transforms;
+      transform: rotateZ(-150deg) $label-transforms;
     }
   }
   &.hour22 {
