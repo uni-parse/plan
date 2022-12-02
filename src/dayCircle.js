@@ -3,10 +3,11 @@ const dayCircleCtx = document.createElement('div'),
   hourCtx = document.createElement('div'),
   hour = document.createElement('div'),
   hoursCtx = document.createElement('div'),
+  allHoursCtxs = [],
   threeHoursCtx = document.createElement('div'),
   tenMinutes = document.createElement('div'),
   centerCircle = document.createElement('div')
-  ;
+;
 
 for (let i = 1; i <= 6; i++) {
   const localTenMinutes = tenMinutes.cloneNode(true)
@@ -22,6 +23,8 @@ for (let i = 1; i <= 24; i++) {
   localHourCtx.setAttribute('class', `hourCtx hCtx${i}`)
   localHourCtx.setAttribute('data-hour', i == 24 ? '0' : i)
   hoursCtx.appendChild(localHourCtx)
+
+  allHoursCtxs.push(localHourCtx)
 }
 
 for (let i = 1; i <= 8; i++) {
@@ -39,6 +42,11 @@ centerCircle.id = 'centerCircle'
 dayCircleCtx.appendChild(centerCircle)
 
 dayCircleCtx.id = 'dayCircleCtx'
+
+const ctxs = allHoursCtxs.concat(dayCircleCtx, centerCircle, threeHoursCtx, hoursCtx)
+dayCircleCtx.addEventListener('click', e => {
+  if (!ctxs.includes(e.target)) e.target.style.background = 'red'
+})
 
 
 export default dayCircleCtx
