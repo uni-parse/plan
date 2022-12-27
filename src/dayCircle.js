@@ -3,11 +3,11 @@ const dayCircleCtx = document.createElement('div'),
   hourCtx = document.createElement('div'),
   hour = document.createElement('div'),
   hoursCtx = document.createElement('div'),
-  allHoursCtxs = [],
+  allHourCtx = [],
   threeHoursCtx = document.createElement('div'),
   tenMinutes = document.createElement('div'),
   centerCircle = document.createElement('div')
-;
+  ;
 
 for (let i = 1; i <= 6; i++) {
   const localTenMinutes = tenMinutes.cloneNode(true)
@@ -24,7 +24,7 @@ for (let i = 1; i <= 24; i++) {
   localHourCtx.setAttribute('data-hour', i == 24 ? '0' : i)
   hoursCtx.appendChild(localHourCtx)
 
-  allHoursCtxs.push(localHourCtx)
+  allHourCtx.push(localHourCtx)
 }
 
 for (let i = 1; i <= 8; i++) {
@@ -43,10 +43,26 @@ dayCircleCtx.appendChild(centerCircle)
 
 dayCircleCtx.id = 'dayCircleCtx'
 
-const ctxs = allHoursCtxs.concat(dayCircleCtx, centerCircle, threeHoursCtx, hoursCtx)
+const ctxs = allHourCtx.concat(dayCircleCtx, centerCircle, threeHoursCtx, hoursCtx)
+
+let isFirstClick = true
 dayCircleCtx.addEventListener('click', e => {
-  if (!ctxs.includes(e.target)) e.target.style.background = 'red'
-})
+  if (isFirstClick && !ctxs.includes(e.target)) {
+    e.target.style.background = 'red'
+    console.log('first event')
+    setTimeout(() => isFirstClick = false, 200);
+
+  }
+}, { once: false })
+
+dayCircleCtx.addEventListener('click', e => {
+  if (!isFirstClick && !ctxs.includes(e.target)) {
+    e.target.style.background = 'cyan'
+    console.log('second event')
+    setTimeout(() => isFirstClick = true, 200);
+
+  }
+}, { once: false })
 
 
 export default dayCircleCtx
