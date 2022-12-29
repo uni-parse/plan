@@ -4,7 +4,7 @@
 @use 'sass:list';
 
 $size: 90vmin;
-$border: 0.3/100 * $size;
+$border: calc(0.3 / 100) * $size;
 $border1: $border solid;
 $border2: 1.5 * $border solid;
 $border3: 2.3 * $border solid;
@@ -59,8 +59,8 @@ $backgroundColor: #111;
   transform-origin: 50% 0;
 
   //sideLength= 2r * sin(π/numberGon)        circle & poligon
-  $width: 2 * 50% * math.sin(math.$pi / 8);
-  $width: $width + 9/100 * $width;
+  $width: 2 * 50% * math.sin(calc(math.$pi / 8));
+  $width: $width + calc(9 / 100) * $width;
   $height: 30%;
   @include size($width, $height);
   $rotateX: rotateX(-90deg);
@@ -133,15 +133,15 @@ $backgroundColor: #111;
   position: absolute;
   //overflow: clip;
   //sideLength= 2r * sin(π/numberGon)        circle & poligon
-  $hourW: 2 * 50% * math.sin(math.$pi / 24);
-  $hourW: $hourW + 2 / 100 * $hourW;
+  $hourW: 2 * 50% * math.sin(calc(math.$pi / 24));
+  $hourW: $hourW + calc(2 / 100) * $hourW;
   $hourH: 18%; //25%
   @include size($hourW, $hourH);
   $rotateX: rotateX(-90deg);
   &:nth-child(3n) {
     border-right: $border3;
   }
-  $font-size: 4/100 * $size;
+  $font-size: calc(4 / 100) * $size;
   &::after {
     content: attr(data-hour);
     font: $font-size sans-serif;
@@ -388,7 +388,7 @@ $backgroundColor: #111;
   //width: calc(100% / 6);
   height: 50%;
   &.m1 {
-    margin-left: .45 * list.nth($border1, 1);
+    margin-left: 0.45 * list.nth($border1, 1);
   }
   &.m6 {
     border-right: none;
