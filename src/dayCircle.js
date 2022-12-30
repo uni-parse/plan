@@ -43,7 +43,13 @@ dayCircleCtx.appendChild(centerCircle)
 
 dayCircleCtx.id = 'dayCircleCtx'
 
-const ctxs = allHourCtx.concat(dayCircleCtx, centerCircle, threeHoursCtx, hoursCtx)
+const ctxs = [
+  dayCircleCtx,
+  centerCircle,
+  threeHoursCtx,
+  hoursCtx,
+  ...allHourCtx
+]
 
 let isFirstClick = true
 dayCircleCtx.addEventListener('click', e => {
