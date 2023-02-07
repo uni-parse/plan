@@ -1,4 +1,5 @@
-const tasksCtx = document.createElement('div'),
+const
+  tasksCtx = document.createElement('div'),
   taskCtx = document.createElement('div'),
   color = document.createElement('input'),
   detail = document.createElement('detail'),
@@ -10,24 +11,15 @@ const tasksCtx = document.createElement('div'),
   trashBtn = document.createElement('button'),
   addBtn = document.createElement('button');
 
-color.setAttribute('type', 'color')
+color.type = 'color'
 
-
-summary.appendChild(input)
-
-
-detail.appendChild(summary)
-
-taskCtx.appendChild(color)
-taskCtx.appendChild(detailBtn)
-taskCtx.appendChild(detail)
-taskCtx.appendChild(trashBtn)
-
-
-tasksCtx.appendChild(addBtn)
+summary.append(input)
+detail.append(summary)
+taskCtx.append(color, detailBtn, detail, trashBtn)
+tasksCtx.append(addBtn)
 
 addBtn.addEventListener('click', addTask)
 
 function addTask() {
-  tasksCtx.appendChild(taskCtx.cloneNode(true))
+  tasksCtx.append(taskCtx.cloneNode(true))
 }
