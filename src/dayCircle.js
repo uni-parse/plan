@@ -1,3 +1,4 @@
+import { sleep } from './utilities'
 const
   dayCircleCtx = document.createElement('div'),
   threeHours = document.createElement('div'),
@@ -50,22 +51,22 @@ const ctxs = [
 ]
 
 let isFirstClick = true
-dayCircleCtx.addEventListener('click', e => {
-  if (isFirstClick && !ctxs.includes(e.target)) {
-    e.target.style.background = 'red'
-    console.log('first event')
-    setTimeout(() => isFirstClick = false, 200);
+dayCircleCtx.addEventListener('click', async e => {
+  if (!isFirstClick || ctxs.includes(e.target)) return
+  e.target.style.background = 'red'
+  console.log('first event')
 
-  }
+  await sleep(200)
+  isFirstClick = false
 }, { once: false })
 
-dayCircleCtx.addEventListener('click', e => {
-  if (!isFirstClick && !ctxs.includes(e.target)) {
-    e.target.style.background = 'cyan'
-    console.log('second event')
-    setTimeout(() => isFirstClick = true, 200);
+dayCircleCtx.addEventListener('click', async e => {
+  if (isFirstClick || ctxs.includes(e.target)) return
+  e.target.style.background = 'cyan'
+  console.log('second event')
 
-  }
+  await sleep(200)
+  isFirstClick = true
 }, { once: false })
 
 
