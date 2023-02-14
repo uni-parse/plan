@@ -50,24 +50,10 @@ const ctxs = [
   ...allHourCtx
 ]
 
-let isFirstClick = true
+let odd
 dayCircleCtx.addEventListener('click', async e => {
-  if (!isFirstClick || ctxs.includes(e.target)) return
-  e.target.style.background = 'red'
-  console.log('first event')
-
-  await sleep(200)
-  isFirstClick = false
+  if (ctxs.includes(e.target)) return
+  e.target.style.background = (odd = !odd) ? 'red' : 'cyan'
 }, { once: false })
-
-dayCircleCtx.addEventListener('click', async e => {
-  if (isFirstClick || ctxs.includes(e.target)) return
-  e.target.style.background = 'cyan'
-  console.log('second event')
-
-  await sleep(200)
-  isFirstClick = true
-}, { once: false })
-
 
 export default dayCircleCtx
