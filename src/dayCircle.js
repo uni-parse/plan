@@ -1,54 +1,50 @@
 import { sleep } from './utilities'
-const
-  dayCircleCtx = document.createElement('div'),
-  threeHours = document.createElement('div'),
-  hourCtx = document.createElement('div'),
-  hour = document.createElement('div'),
-  hoursCtx = document.createElement('div'),
-  allHourCtx = [],
-  threeHoursCtx = document.createElement('div'),
-  tenMinutes = document.createElement('div'),
-  centerCircle = document.createElement('div')
 
+const hourCtx = document.createElement('div')
 for (let i = 1; i <= 6; i++) {
-  const localTenMinutes = tenMinutes.cloneNode(true)
-  localTenMinutes.className = `minute m${i}`
-  hourCtx.append(localTenMinutes)
+  const tenMinutes = document.createElement('div')
+  tenMinutes.className = `minute m${i}`
+
+  hourCtx.append(tenMinutes)
 }
 
-for (let i = 1; i <= 24; i++) {
-  const
-    localHourCtx = hourCtx.cloneNode(true),
-    localHour = hour.cloneNode(true)
-
-  localHour.className = `hour h${i}`
-  localHourCtx.append(localHour)
-  localHourCtx.className = `hourCtx hCtx${i}`
-  localHourCtx.dataset.hour = i == 24 ? '0' : i
-  hoursCtx.append(localHourCtx)
-
-  allHourCtx.push(localHourCtx)
-}
-
-for (let i = 1; i <= 8; i++) {
-  const localThreeHours = threeHours.cloneNode(true)
-  localThreeHours.className = `threeHours _3h${i}`
-  threeHoursCtx.append(localThreeHours)
-}
-
+const hoursCtx = document.createElement('div')
 hoursCtx.id = 'hoursCtx'
+for (let i = 1; i <= 24; i++) {
+  const hour = document.createElement('div')
+  hour.className = `hour h${i}`
+
+  const hourCtx_clone = hourCtx.cloneNode(true)
+  hourCtx_clone.append(hour)
+  hourCtx_clone.className = `hourCtx hCtx${i}`
+  hourCtx_clone.dataset.hour = i == 24 ? '0' : i
+
+  hoursCtx.append(hourCtx_clone)
+}
+
+const threeHoursCtx = document.createElement('div')
 threeHoursCtx.id = 'threeHoursCtx'
+for (let i = 1; i <= 8; i++) {
+  const threeHours = document.createElement('div')
+  threeHours.className = `threeHours _3h${i}`
+
+  threeHoursCtx.append(threeHours)
+}
+
+const centerCircle = document.createElement('div')
 centerCircle.id = 'centerCircle'
+
+const dayCircleCtx = document.createElement('div')
 dayCircleCtx.id = 'dayCircleCtx'
 dayCircleCtx.append(hoursCtx, threeHoursCtx, centerCircle)
 
-const ctxs = new Set([
-  dayCircleCtx,
-  centerCircle,
-  threeHoursCtx,
-  hoursCtx,
-  ...allHourCtx
-])
+const ctxs = new Set() // cache
+  .add(dayCircleCtx)
+  .add(centerCircle)
+  .add(threeHoursCtx)
+  .add(hoursCtx)
+for (const hourCtx of hoursCtx.children) ctxs.add(hourCtx)
+
 /* 
 let odd
 dayCircleCtx.addEventListener('click', async e => {
