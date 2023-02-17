@@ -43,7 +43,6 @@ $backgroundColor: #111;
   perspective-origin: 50%;
   transform-style: preserve-3d;
   transform: rotate(-0.4deg);
-  //background: $backgroundColor;
   border: $border2;
   border-radius: 50%;
   outline: $border1;
@@ -51,7 +50,14 @@ $backgroundColor: #111;
   overflow: clip;
 }
 .threeHours {
-  border-left: $border3;
+  border: {
+    left: $border3;
+    right: $border3;
+    top: {
+      left-radius: 50% 50%;
+      right-radius: 50% 50%;
+    }
+  }
   background: $backgroundColor;
   display: inline-block;
   position: absolute;

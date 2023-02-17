@@ -36,7 +36,11 @@ centerCircle.id = 'centerCircle'
 
 const dayCircleCtx = document.createElement('div')
 dayCircleCtx.id = 'dayCircleCtx'
-dayCircleCtx.append(hoursCtx, threeHoursCtx, centerCircle)
+dayCircleCtx.append(
+  hoursCtx,
+  threeHoursCtx,
+  centerCircle
+)
 
 const ctxs = new Set() // cache
   .add(dayCircleCtx)
@@ -52,28 +56,29 @@ dayCircleCtx.addEventListener('click', async e => {
   e.target.style.background = (odd = !odd) ? 'red' : 'cyan'
 }, { once: false }) */
 
-/* dayCircleCtx.addEventListener('mousedown', e => {
-  select(e)
+
+dayCircleCtx.addEventListener('mousedown', e => {
+  if (!select(e)) return
+
   dayCircleCtx.addEventListener('mouseover', select)
   dayCircleCtx.addEventListener('mouseup',
     () => dayCircleCtx.removeEventListener('mouseover', select)
     , { once: true })
 })
 
-function select(e) {
-  if (ctxs.has(e.target)) return
-  e.target.style.background = 'red'
-} */
-
+/* 
 dayCircleCtx.addEventListener('mousedown', e => {
-  select(e)
+  if (!select(e)) return
+  
   dayCircleCtx.addEventListener('mouseup',
     select, { once: true })
-}, { once: false })
+}, { once: false }) */
 
 function select(e) {
   if (ctxs.has(e.target)) return
   e.target.style.background = 'red'
+
+  return true
 }
 
 export default dayCircleCtx

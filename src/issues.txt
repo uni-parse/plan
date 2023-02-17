@@ -1,0 +1,3 @@
+we need to select halo by events mousedown & mouseup
+must be updated on mousemove
+selection limited from left to right
