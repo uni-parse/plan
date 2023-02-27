@@ -50,6 +50,10 @@ const ctxs = new Set()
   .add(hoursCtx)
 for (const hourCtx of hoursCtx.children) ctxs.add(hourCtx)
 
+
+
+
+
 /* 
 let odd
 dayCircleCtx.addEventListener('click', async e => {
@@ -64,7 +68,6 @@ dayCircleCtx.addEventListener('mousedown', async e => {
   dayCircleCtx.addEventListener('mouseover', select)
   await eventPromise(dayCircleCtx, 'mouseup')
   dayCircleCtx.removeEventListener('mouseover', select)
-  
 }, { once: false })
 
 /* 
