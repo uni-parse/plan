@@ -1,0 +1,4 @@
+circle contain 24 hour
+  separated 8 x 3-hours
+  
+  threeHours

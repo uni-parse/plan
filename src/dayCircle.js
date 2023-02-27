@@ -1,4 +1,4 @@
-import { sleep } from './utilities'
+import { sleep, eventPromise } from './utilities'
 
 const hourCtx = document.createElement('div')
 for (let i = 1; i <= 6; i++) {
@@ -42,7 +42,8 @@ dayCircleCtx.append(
   centerCircle
 )
 
-const ctxs = new Set() // cache
+// cache
+const ctxs = new Set()
   .add(dayCircleCtx)
   .add(centerCircle)
   .add(threeHoursCtx)
@@ -57,14 +58,14 @@ dayCircleCtx.addEventListener('click', async e => {
 }, { once: false }) */
 
 
-dayCircleCtx.addEventListener('mousedown', e => {
+dayCircleCtx.addEventListener('mousedown', async e => {
   if (!select(e)) return
 
   dayCircleCtx.addEventListener('mouseover', select)
-  dayCircleCtx.addEventListener('mouseup',
-    () => dayCircleCtx.removeEventListener('mouseover', select)
-    , { once: true })
-})
+  await eventPromise(dayCircleCtx, 'mouseup')
+  dayCircleCtx.removeEventListener('mouseover', select)
+  
+}, { once: false })
 
 /* 
 dayCircleCtx.addEventListener('mousedown', e => {
