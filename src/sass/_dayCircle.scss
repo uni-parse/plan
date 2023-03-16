@@ -62,7 +62,7 @@ $backgroundColor: #111;
   transform-origin: 50% 0;
   background: $backgroundColor;
 
-  //sideLength= 2r * sin(π/numberGon)        circle & poligon
+  //sideLength = 2r * sin(π / edges)        circle & poligon
   $width: 2 * 50% * math.sin(calc(math.$pi / 8));
   $width: (math.div(9, 100) * $width)+($width);
   $height: 30%;

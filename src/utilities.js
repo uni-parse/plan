@@ -1,4 +1,4 @@
-export { sleep, eventPromise}
+export { sleep, eventPromise }
 function sleep(ms) {
   return new Promise(rs => setTimeout(rs, ms))
 }

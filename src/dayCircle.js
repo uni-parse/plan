@@ -1,9 +1,12 @@
-import { sleep, eventPromise } from './utilities'
+export { selectListener } from "./dayCircle_listener"
+export const dayCircleCtx = document.createElement('div')
+dayCircleCtx.id = 'dayCircleCtx'
 
 const hourCtx = document.createElement('div')
 for (let i = 1; i <= 6; i++) {
   const tenMinutes = document.createElement('div')
   tenMinutes.className = `minute m${i}`
+  tenMinutes.dataset.m = i
 
   hourCtx.append(tenMinutes)
 }
@@ -34,55 +37,8 @@ for (let i = 1; i <= 8; i++) {
 const centerCircle = document.createElement('div')
 centerCircle.id = 'centerCircle'
 
-const dayCircleCtx = document.createElement('div')
-dayCircleCtx.id = 'dayCircleCtx'
 dayCircleCtx.append(
   hoursCtx,
   threeHoursCtx,
   centerCircle
 )
-
-// cache
-const ctxs = new Set()
-  .add(dayCircleCtx)
-  .add(centerCircle)
-  .add(threeHoursCtx)
-  .add(hoursCtx)
-for (const hourCtx of hoursCtx.children) ctxs.add(hourCtx)
-
-
-
-
-
-/* 
-let odd
-dayCircleCtx.addEventListener('click', async e => {
-  if (ctxs.has(e.target)) return
-  e.target.style.background = (odd = !odd) ? 'red' : 'cyan'
-}, { once: false }) */
-
-
-dayCircleCtx.addEventListener('mousedown', async e => {
-  if (!select(e)) return
-
-  dayCircleCtx.addEventListener('mouseover', select)
-  await eventPromise(dayCircleCtx, 'mouseup')
-  dayCircleCtx.removeEventListener('mouseover', select)
-}, { once: false })
-
-/* 
-dayCircleCtx.addEventListener('mousedown', e => {
-  if (!select(e)) return
-  
-  dayCircleCtx.addEventListener('mouseup',
-    select, { once: true })
-}, { once: false }) */
-
-function select(e) {
-  if (ctxs.has(e.target)) return
-  e.target.style.background = 'red'
-
-  return true
-}
-
-export default dayCircleCtx

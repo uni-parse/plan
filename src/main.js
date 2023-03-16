@@ -1,14 +1,11 @@
 import './sass/main.scss'
-import dayCircleCtx from './dayCircle';
+import { dayCircleCtx, selectListener } from './dayCircle';
 
 const main = document.createElement('main')
-main.append(dayCircleCtx)
-
 document.body.append(main)
 
-
-
-
+main.append(dayCircleCtx)
+selectListener()
 
 
 console.log('done')
