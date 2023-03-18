@@ -26,6 +26,8 @@ for (let i = 1; i <= 24; i++) {
   hoursCtx.append(hourCtx_clone)
 }
 
+
+
 const threeHoursCtx = document.createElement('div')
 threeHoursCtx.id = 'threeHoursCtx'
 for (let i = 1; i <= 8; i++) {
