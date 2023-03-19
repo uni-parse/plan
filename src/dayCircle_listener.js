@@ -78,11 +78,15 @@ function selectDist(fromCoords, toCoords, elsCache) {
 
   let dist
 
-  if (!th && ( // navigate => child || parent || ansestor
-    fromThreeHours // => hour || minutes
-    || fromHour && (toThreeHours || toMinutes && !h)
-    || fromMinutes && (toThreeHours || toHour && !h)
-  )) dist = 0
+
+  const toDescendent = fromThreeHours && !th
+    || fromHour && toMinutes && !th && !h
+
+  const toAscestor = fromHour && toThreeHours && !th
+    || fromMinutes && toThreeHours && !th
+    || fromMinutes && toHour && !th && !h
+
+  if (toAscestor || toDescendent) dist = 0
   else if (fromThreeHours) {
     if (toThreeHours) dist = th * 18
     else if (toHour) dist = (th - 1) * 18 + h * 6
