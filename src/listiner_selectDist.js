@@ -21,13 +21,17 @@ export function selectDist(fromCoords, toCoords, elsCache, els) {
     toThreeHours = !h1 && !m1,
     toHour = h1 && !m1,
     toMinutes = !!m1,
-    
+
     toDescendant = fromThreeHours && !th
       || fromHour && toMinutes && !th && !h,
 
     dist = calcDist({ toDescendant, fromThreeHours, fromHour, fromMinutes, toThreeHours, toHour, toMinutes, th, h, m })
 
   if (dist <= 0) return 0
+
+  //reset cache
+  elsCache.forEach(el => el.style.background = '')
+  elsCache.clear()
 
   const
     dist_th = Math.floor(dist / 18),

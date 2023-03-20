@@ -1,4 +1,4 @@
-import { eventPromise} from "./utilities"
+import { eventPromise } from "./utilities"
 import { selectDist } from "./listiner_selectDist"
 
 export function selectListener() {
@@ -18,7 +18,7 @@ async function pointerdownHandler(e) {
   if (!coords0) return
   //console.log(coords0)
 
-  //select(e.target)
+  select(e.target)
 
 
   const dayCircleCtx = e.currentTarget
@@ -31,10 +31,6 @@ async function pointerdownHandler(e) {
   let prevCoords
 
   dayCircleCtx.onpointerover = e => {
-    //reset cache
-    elsCache.forEach(el => el.style.background = '')
-    elsCache.clear()
-
     const currentCoords = getCoords(e)
     if ([
       0,
@@ -45,7 +41,6 @@ async function pointerdownHandler(e) {
 
     const dist = selectDist(coords0, currentCoords, elsCache, els)
     if (!dist) return
-    //console.log(`${coords0} ${currentCoords} ${dist}`)
 
     elsCache.forEach(el => select(el))
 
