@@ -64,29 +64,29 @@ export function selectEls({ fromThreeHours, fromHour, fromMinutes, toThreeHours,
 
   else if (fromHour && toMinutes) {
     //add threeHours
-    range(th0 + 1, th1 - 1)
+    range(th0 + (h0 > 1), th1 - (h1 < 3 || m1 < 6))
       .forEach(i => elsCache.add(els.th[i - 1]))
 
     //add hours
-    if (!th) range(
+    if (!th && (h0 > 1 || h1 < 3 || m1 < 6)) range(
       (th0 - 1) * 3 + h0,
-      (th1 - 1) * 3 + h1 - 1
+      (th1 - 1) * 3 + h1 - (m1 < 6)
     ).forEach(i => elsCache.add(els.h[i - 1]))
 
-    else {
-      range(
+    else if (th) {
+      if (h0 > 1) range(
         (th0 - 1) * 3 + h0,
         th0 * 3
       ).forEach(i => elsCache.add(els.h[i - 1]))
 
-      range(
+      if (h1 < 3 || m1 < 6) range(
         (th1 - 1) * 3 + 1,
-        (th1 - 1) * 3 + h1 - 1
+        (th1 - 1) * 3 + h1 - (m1 < 6)
       ).forEach(i => elsCache.add(els.h[i - 1]))
     }
 
     //add minutes
-    range(
+    if (m1 < 6) range(
       ((th1 - 1) * 3 + h1 - 1) * 6 + 1,
       ((th1 - 1) * 3 + h1 - 1) * 6 + m
     ).forEach(i => elsCache.add(els.m[i - 1]))
